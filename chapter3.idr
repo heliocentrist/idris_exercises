@@ -32,3 +32,8 @@ my_vect_map: (a->b) -> Vect n a -> Vect n b
 my_vect_map f [] = []
 my_vect_map f (x :: xs) = f x :: my_vect_map f xs
 
+createEmpties : Vect n (Vect 0 elem)
+
+transposeMat : Vect m (Vect n elem) -> Vect n (Vect m elem)
+transposeMat [] = createEmpties
+transposeMat (x :: xs) = ?transposeMat_rhs_2
