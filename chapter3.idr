@@ -33,7 +33,13 @@ my_vect_map f [] = []
 my_vect_map f (x :: xs) = f x :: my_vect_map f xs
 
 createEmpties : Vect n (Vect 0 elem)
+createEmpties = replicate _ []
+
+transposeHelper : (x : Vect n elem) -> (xsTrans : Vect n (Vect len elem)) -> Vect n (Vect (S len) elem)
+transposeHelper [] [] = []
+transposeHelper (x :: xs) (y :: ys) = (x :: y) :: transposeHelper xs ys
 
 transposeMat : Vect m (Vect n elem) -> Vect n (Vect m elem)
 transposeMat [] = createEmpties
-transposeMat (x :: xs) = ?transposeMat_rhs_2
+transposeMat (x :: xs) = let xsTrans = transposeMat xs in
+                         transposeHelper x xsTrans
